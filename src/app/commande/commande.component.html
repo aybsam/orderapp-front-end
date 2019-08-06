@@ -1,0 +1,53 @@
+<script>
+// Material Select Initialization
+$(document).ready(function() {
+$('.mdb-select').materialSelect();
+});
+</script>
+<H1>Command</H1>
+
+<div class="container">
+  <div class="alert alert-warning" *ngIf="todoForm.dirty && todoForm.invalid">Enter valid values</div>
+  <div class="alert alert-warning" *ngIf="todoForm.dirty && dateCommande.invalid">Enter valid Command Date</div>
+  <div class="alert alert-warning" *ngIf="todoForm.dirty && numeroCommande.invalid">Enter valid Command Number</div>
+  <div class="alert alert-warning" *ngIf="todoForm.dirty && description.invalid">Enter atleast 5 characters in Description</div>
+  
+  <form (ngSubmit)="!todoForm.invalid && saveTodo()" #todoForm="ngForm">
+    <fieldset class="form-group">
+      <label>Command Number</label>
+      <input type="text" #numeroCommande="ngModel" 
+            [(ngModel)]="commande.numeroCommande" class="form-control" 
+                name="numeroCommande" required="required">
+    </fieldset>
+
+    <fieldset class="form-group">
+        <label>Command Date</label>
+        <input type="date" #dateCommande="ngModel"
+        [ngModel]="commande.dateCommande | date:'yyyy-MM-dd' "
+        (ngModelChange)="commande.dateCommande = $event"
+        class="form-control" name="commandeDate" required="required" >
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label>Description</label>
+      <input type="text" #description="ngModel" 
+            [(ngModel)]="commande.description" class="form-control" 
+                name="description" required="required" minlength="5">
+    </fieldset>
+
+    <fieldset class="form-group">
+      <div class="col-lg-9">
+        <label>Products</label>
+        <select  [(ngModel)]="commande.produits" class="form-control" multiple="multiple" name="prods" data-fouc>
+          <option *ngFor="let produit of produits" [value]="produit">{{produit.nomProduit}}</option>
+        </select>
+      </div>
+    </fieldset>
+
+    <!-- <fieldset class="form-group">
+      <label>Products</label>
+      <ejs-multiselect id='localData' name='name'  #local='ngModel' [(value)]='value'[(ngModel)]='commande.produits' [dataSource]='produits' [fields]='localFields' [placeholder]='localWaterMark'></ejs-multiselect>
+    </fieldset> -->
+    <button type="submit" class="btn btn-success">Save</button>
+  </form>  
+</div>

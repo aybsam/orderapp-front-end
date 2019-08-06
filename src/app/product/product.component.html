@@ -1,0 +1,49 @@
+<script>
+    // Material Select Initialization
+    $(document).ready(function() {
+    $('.mdb-select').materialSelect();
+    });
+    </script>
+    <H1>Product</H1>
+    
+    <div class="container">
+      <div class="alert alert-warning" *ngIf="todoForm.dirty && todoForm.invalid">Enter valid values</div>
+      <div class="alert alert-warning" *ngIf="todoForm.dirty && numeroProduit.invalid">Enter valid Product Number</div>
+      <div class="alert alert-warning" *ngIf="todoForm.dirty && nomProduit.invalid">Enter atleast 5 characters in Product Name</div>
+      <div class="alert alert-warning" *ngIf="todoForm.dirty && prix.invalid">Enter valid Product Price</div>
+      
+      <form (ngSubmit)="!todoForm.invalid && saveProduct()" #todoForm="ngForm">
+        <fieldset class="form-group">
+          <label>Product Number</label>
+          <input type="text" #numeroProduit="ngModel" 
+                [(ngModel)]="product.numeroProduit" class="form-control" 
+                    name="numeroProduit" required="required">
+        </fieldset>
+    
+        <fieldset class="form-group">
+            <label>Product Name</label>
+            <input type="text" #nomProduit="ngModel"
+            [ngModel]="product.nomProduit"
+            class="form-control" name="nomProduit" required="required" >
+        </fieldset>
+    
+        <fieldset class="form-group">
+            <label>Price</label>
+            <input type="number" #prix="ngModel" 
+                  [(ngModel)]="product.prix" class="form-control" 
+                      name="prix" required="required" minlength="5">
+          </fieldset>
+          <fieldset class="form-group">
+              <label>Quantite</label>
+              <input type="number" #quantite="ngModel" 
+                    [(ngModel)]="product.quantite" class="form-control" 
+                        name="quantite" required="required" minlength="5">
+            </fieldset>
+    
+        <!-- <fieldset class="form-group">
+          <label>Products</label>
+          <ejs-multiselect id='localData' name='name'  #local='ngModel' [(value)]='value'[(ngModel)]='commande.produits' [dataSource]='produits' [fields]='localFields' [placeholder]='localWaterMark'></ejs-multiselect>
+        </fieldset> -->
+        <button type="submit" class="btn btn-success">Save</button>
+      </form>  
+    </div>

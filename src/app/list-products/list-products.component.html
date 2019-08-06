@@ -1,0 +1,34 @@
+<h1> Product </h1>
+
+<div class="alert alert-success" *ngIf='message'>{{message}}</div>
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product Number</th>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--   for (Todo todo: todos) {  -->
+              <tr *ngFor="let product of products">
+                <td>{{product.numeroProduit}}</td>
+                <td>{{product.nomProduit}}</td>
+                <td>{{product.prix}} $</td>
+                <td><button (click)="updateProduit(product.id)" class="btn btn-success">Update</button></td>
+                <td><button (click)="deleteProduct(product.id)" class="btn btn-warning">Delete</button></td>
+              </tr>
+      <!-- } -->
+    </tbody>
+
+  </table>
+
+  <div class="row">
+      <button (click)="addProduct()" class="btn btn-success">Add</button>
+  </div>
+
+</div>
